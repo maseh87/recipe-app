@@ -1,5 +1,7 @@
 angular.module('recipe-app', [
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate',
+  'fx.animations'
 ])
 // .config(function($routeProvider) {
 //     $routeProvider
@@ -18,15 +20,19 @@ angular.module('recipe-app', [
       url: '/' + food,
     }).
     then(function(data){
-      $scope.foods = sortData(data);
+      $scope.foods = sortData(data.data);
     })
   };
   $scope.ingredient = 'chicken';
+  $scope.allRecipes = [];
+  var sortData = function(data) {
+    var matches = data.matches;
+    for(var i = 0; i < matches.length; i++) {
+      $scope.allRecipes.push({
+        name: matches[i].recipeName,
+        ingredients: matches[i].ingredients,
+        pic: matches[i].smallImageUrls[0]
+      });
+    }
+  };
 });
-
-var sortData = function(data) {
-  var allRecipes = data.data.matches;
-  allRecipes.name = allRecipes[0].recipeName;
-  console.log(allRecipes.name);
-  return allRecipes.name;
-};
