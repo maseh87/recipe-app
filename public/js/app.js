@@ -1,37 +1,32 @@
-var showRecipes = function(data) {
-  var matches = data.matches;
-  for(var i = 0; i < matches.length; i++) {
-    var pic = matches[i].smallImageUrls[0];
-    var ingredients = matches[i].ingredients;
-    var name = matches[i].recipeName;
-    var ul = $('<ul>');
-    var li1 = $('<li>').text(pic);
-    var li2 = $('<li>').text(ingredients);
-    var li3 = $('<li>').text(name);
-    li1.prependTo(ul);
-    li2.prependTo(ul);
-    li3.prependTo(ul);
-    ul.prependTo('body');
-  }
+angular.module('recipe-app', [
+  'ngRoute'
+])
+// .config(function($routeProvider) {
+//     $routeProvider
+//       .when('/login', {
+//         templateUrl: "../views/login.html"
+//     })
+//       .otherwise({
+//         redirectTo: '/'
+//       });
+// });
 
-};
-
-
-
-
-$(document).ready(function() {
-  $("button").on('click', function(e) {
-    e.preventDefault();
-    var val = $('input').val();
-    $.ajax({
-      url: 'http://localhost:3000/' + val,
+.controller('mainController', function($scope, $http) {
+  $scope.getFood = function(food) {
+    return $http({
       method: 'GET',
-      success: function(data) {
-        showRecipes(data);
-      },
-      error: function() {
-        console.log('error');
-      }
-    });
-  });
+      url: '/' + food,
+    }).
+    then(function(data){
+      $scope.foods = sortData(data);
+    })
+  };
+  $scope.ingredient = 'chicken';
 });
+
+var sortData = function(data) {
+  var allRecipes = data.data.matches;
+  allRecipes.name = allRecipes[0].recipeName;
+  console.log(allRecipes.name);
+  return allRecipes.name;
+};

@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
+ <!DOCTYPE html>
+<html ng-app='recipe-app'>
 <head>
   <title>Recipes</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <input type='text' placeholder='food'>
-  <button>Send Food</button>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<body ng-controller='mainController'>
+  <input type='text' placeholder='food' ng-model='ingredient'>
+  <button ng-click='getFood(ingredient)'>Send Food</button>
+  <div>{{ foods }}</div>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular-route/angular-route.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

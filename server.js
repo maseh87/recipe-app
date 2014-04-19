@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.logger('dev'));
 app.use(express.methodOverride());
-
 app.use(express.static('public'));
-require('./app/routes/routes')(app);
-console.log('server', app);
+
+
+require('./app/routes/routes.js')(app);
 module.exports = app;
