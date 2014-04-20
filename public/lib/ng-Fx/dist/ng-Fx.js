@@ -376,6 +376,10 @@ angular.module('fx.animations.bounces', ['fx.animations.create'])
 
   return new BounceAnimation(effect);
 }]);
+
+
+
+
 angular.module('fx.animations',
   [
     'fx.animations.fades',

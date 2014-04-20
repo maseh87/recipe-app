@@ -14,6 +14,8 @@ angular.module('recipe-app', [
 // });
 
 .controller('mainController', function($scope, $http) {
+
+
   $scope.getFood = function(food) {
     return $http({
       method: 'GET',
@@ -23,16 +25,22 @@ angular.module('recipe-app', [
       $scope.foods = sortData(data.data);
     })
   };
-  $scope.ingredient = 'chicken';
+  $scope.ingredient;
   $scope.allRecipes = [];
   var sortData = function(data) {
     var matches = data.matches;
     for(var i = 0; i < matches.length; i++) {
-      $scope.allRecipes.push({
-        name: matches[i].recipeName,
-        ingredients: matches[i].ingredients,
-        pic: matches[i].smallImageUrls[0]
-      });
+      if(matches[i].smallImageUrls[0]) {
+        $scope.allRecipes.push({
+          name: matches[i].recipeName,
+          ingredients: matches[i].ingredients,
+          pic: matches[i].smallImageUrls[0]
+        });
+      }
     }
+  };
+
+  $scope.removeCard = function(index) {
+    $scope.allRecipes.splice(index, 1);
   };
 });
