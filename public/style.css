@@ -6,7 +6,7 @@ ul {
   padding-top: 5px;
 }
 .card {
-  background: lightgrey;
+  background: url('images/paper.jpg');
   width: 30%;
   margin: 12px 12px;
   box-shadow:-1px 1px 3px 1px grey;

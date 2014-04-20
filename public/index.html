@@ -8,24 +8,20 @@
 <body ng-controller='mainController'>
   <div class='container'>
     <div class='col-xs-4'>
-      <input type='text' placeholder='Add Ingredient ' ng-model='ingredient' class='form-control'>
+      <input type='text' placeholder='Add Ingredients ' ng-model='ingredient' class='form-control'>
     </div>
     <button ng-click='getFood(ingredient)' class='btn btn-default button'>Send Food</button>
     <div class='row' style='padding-left: 20px;'>
-      <!-- <div class='fx-fade-down-big fx-easing-cubic fx-speed-1000'> -->
-        <ul ng-repeat='dish in allRecipes' class='col-md-6 card leave fx-fade-down-big fx-easing-cubic fx-speed-1000'>
-          <div class='base-class' ng-class='card'>
-            <div class='col-med-4'><img src="{{ dish.pic }}"class='img-rounded'></div>
-            <h4>{{ dish.name }}</h4>
-            <h6 ng-click="removeCard($index)">See Ingredients</h6>
-          </div>
-            <!-- <li>
-              <ul ng-repeat='ingredients in dish.ingredients'>
-                <li>{{ ingredients }}</li>
-              </ul>
-            </li> -->
-        </ul>
-      <!-- </div> -->
+      <ul ng-repeat='dish in allRecipes' class='col-md-6 card leave fx-fade-down-big fx-easing-cubic fx-speed-1000'>
+        <div class='col-med-4'><img src="{{ dish.pic }}"class='img-rounded'></div>
+        <h4>{{ dish.name }}</h4>
+        <h6 ng-click="removeCard($index)">See Ingredients</h6>
+          <!-- <li>
+            <ul ng-repeat='ingredients in dish.ingredients'>
+              <li>{{ ingredients }}</li>
+            </ul>
+          </li> -->
+      </ul>
     </div>
   </div>
   <script src="lib/angular/angular.min.js"></script>

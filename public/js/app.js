@@ -17,6 +17,7 @@ angular.module('recipe-app', [
 
 
   $scope.getFood = function(food) {
+
     return $http({
       method: 'GET',
       url: '/' + food,
@@ -24,7 +25,10 @@ angular.module('recipe-app', [
     then(function(data){
       $scope.foods = sortData(data.data);
     })
+    return food = '';
+
   };
+
   $scope.ingredient;
   $scope.allRecipes = [];
   var sortData = function(data) {
@@ -41,6 +45,7 @@ angular.module('recipe-app', [
   };
 
   $scope.removeCard = function(index) {
-    $scope.allRecipes.splice(index, 1);
+    $scope.allRecipes.splice(0, index);
+    $scope.allRecipes.splice(index);
   };
 });
