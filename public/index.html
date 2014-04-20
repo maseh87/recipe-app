@@ -8,14 +8,15 @@
 <body ng-controller='mainController'>
   <div class='container'>
     <div class='col-xs-4'>
-      <input type='text' placeholder='Add Ingredients ' ng-model='ingredient' class='form-control'>
+      <input type='text' placeholder='Add Ingredients ' ng-model='ingredient' class='form-control' ng-keydown='onEnter($event, ingredient)'>
     </div>
     <button ng-click='getFood(ingredient)' class='btn btn-default button'>Send Food</button>
     <div class='row' style='padding-left: 20px;'>
       <ul ng-repeat='dish in allRecipes' class='col-md-6 card leave fx-fade-down-big fx-easing-cubic fx-speed-1000'>
-        <div class='col-med-4'><img src="{{ dish.pic }}"class='img-rounded'></div>
-        <h4>{{ dish.name }}</h4>
+        <div class='col-med-4'><img src="{{ dish.pic }}"class='img-rounded'>
+        <li class ='name'>{{ dish.name }}</li>
         <h6 ng-click="removeCard($index)">See Ingredients</h6>
+        </div>
           <!-- <li>
             <ul ng-repeat='ingredients in dish.ingredients'>
               <li>{{ ingredients }}</li>

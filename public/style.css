@@ -1,16 +1,16 @@
 ul {
   list-style: none;
 }
-.recipeName {
-  font-size: 20px;
-  padding-top: 5px;
+.name {
+  height: 27px;
+  width: 321px;
 }
 .card {
   background: url('images/paper.jpg');
   width: 30%;
   margin: 12px 12px;
   box-shadow:-1px 1px 3px 1px grey;
-  padding: 3%;
+  padding: 10px 1%;
   border-radius: 3px;
   cursor: pointer;
   -webkit-box-sizing: border-box;
