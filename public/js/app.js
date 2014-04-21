@@ -51,18 +51,26 @@ angular.module('recipe-app', [
   };
 })
 .directive('card', function(){
+  function link(scope, el, attr){
+    el.on('mouseenter', function(){
+      console.log('here');
+      el.css('color', 'red');
+    });
+  }
   return {
     restrict: 'E',
     scope: {
       foods: '='
     },
-    transclude: true,
     replace: true,
+    transclude: true,
     template:
     '<div ng-repeat="food in foods"class="card">'+
       '<h4 class="card-header">{{ food.name }}</h4>'+
       '<img src="{{ food.pic }}" class="img-rounded" />'+
-    '</div>'
+      '<div ng-transclude></div>'+
+    '</div>',
+    link: link
   };
 });
 
