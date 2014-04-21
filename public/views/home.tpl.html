@@ -1,0 +1,26 @@
+<div class='container'>
+  <!-- <div class='col-xs-4'>
+    <input type='text' placeholder='Add Ingredients ' ng-model='ingredient' class='form-control' ng-keydown='onEnter($event, ingredient)'>
+    <input type='text' ng-model='search'>
+  </div>
+  <button ng-click='search(ingredient)' class='btn btn-default button'>Send Food</button>
+  <div class='row' style='padding-left: 20px;'>
+    <ul ng-repeat='dish in allRecipes | filter:search' class='col-md-6 card leave fx-fade-down-big fx-easing-cubic fx-speed-1000'>
+      <div class='col-med-4'><img src="{{ dish.pic }}"class='img-rounded'>
+      <li class ='name'>{{ dish.name }}</li>
+      <h6 ng-click="removeCard($index)">See Ingredients</h6>
+      </div>
+         <li>
+          <ul ng-repeat='ingredients in dish.ingredients'>
+            <li>{{ ingredients }}</li>
+          </ul>
+        </li>
+    </ul>
+  </div>-->
+
+  <form ng-submit="search(ingredient)">
+    <input type="text" ng-model="ingredient">
+    <input type="submit" value="do shit">
+  </form>
+  <div ng-repeat="item in recipes">{{ item.recipeName }}</div>
+</div>
