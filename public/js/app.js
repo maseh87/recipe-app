@@ -21,29 +21,47 @@ angular.module('recipe-app', [
     .otherwise('/home')
 })
 
-.controller('mainController', function($scope, $http, Recipes) {
+.controller('mainController', function($scope, $http, Recipes, $filter) {
   console.log('mainController');
   $scope.search = function(food) {
     Recipes.getFood(food)
     .then(function(data) {
-      $scope.recipes = data;
-      $scope.pics = $scope.recipes[0].smallImageUrls[0];
-      console.log('some shit ', $scope.recipes[0].smallImageUrls[0]);
+      console.log(data);
+      $scope.recipes = [];
+      for(var i = 0; i < data.length; i++) {
+        if(data[i].smallImageUrls[0]) {
+          $scope.recipes.push({
+            name: $filter('smallHeading')(data[i].recipeName),
+            ingredients: data[i].ingredients,
+            pic: data[i].smallImageUrls[0]
+          })
+        }
+      }
     })
+  };
+})
+.filter('smallHeading', function(){
+  return function(input){
+    var result = input
+    if(input.length > 30){
+      result = input.slice(0, 30) + '...';
+      return result;
+    }
+    return result;
   };
 })
 .directive('card', function(){
   return {
     restrict: 'E',
     scope: {
-      title: '@'
+      foods: '='
     },
     transclude: true,
     replace: true,
     template:
-    '<div class="card">'+
-      '<h4 class="card-header">{{ title }}</h4>'+
-      '<div class="card-content" ng-transclude></div>'+
+    '<div ng-repeat="food in foods"class="card">'+
+      '<h4 class="card-header">{{ food.name }}</h4>'+
+      '<img src="{{ food.pic }}" class="img-rounded" />'+
     '</div>'
   };
 });
@@ -57,16 +75,16 @@ angular.module('recipe-app', [
 
 
   // var sortData = function($scope.recipes) {
-  //     // var matches = data.matches;
-  //     // for(var i = 0; i < matches.length; i++) {
-  //     //   if(matches[i].smallImageUrls[0]) {
-  //     //     $scope.allRecipes.push({
-  //     //       name: matches[i].recipeName,
-  //     //       ingredients: matches[i].ingredients,
-  //     //       pic: matches[i].smallImageUrls[0]
-  //     //     });
-  //     //   }
-  //     // console.log($scope.allRecipes.ingredients);
+  //   var matches = data.matches;
+  //   for(var i = 0; i < matches.length; i++) {
+  //     if(matches[i].smallImageUrls[0]) {
+  //       $scope.allRecipes.push({
+  //         name: matches[i].recipeName,
+  //         ingredients: matches[i].ingredients,
+  //         pic: matches[i].smallImageUrls[0]
+  //       });
+  //     }
+  //     console.log($scope.allRecipes.ingredients);
   //   } else if ($scope.allRecipes.length <= 0 || 0) {
   //     var matches = data.matches;
   //     for(var i = 0; i < matches.length; i++) {
