@@ -10,7 +10,8 @@ ul {
   width: 30%;
   margin: 12px 12px;
   box-shadow:-1px 1px 3px 1px grey;
-  padding: 10px 1%;
+  padding: 1%;
+  /*padding-bottom: 30px;*/
   border-radius: 3px;
   cursor: pointer;
   -webkit-box-sizing: border-box;
