@@ -30,7 +30,31 @@ angular.module('recipe-app', [
       console.log('some shit ', $scope.recipes);
     })
   };
-  $scope.allRecipes = [];
+})
+.directive('card', function(){
+  return {
+    restrict: 'E',
+    scope: {
+      title: '@'
+    },
+    transclude: true,
+    replace: true,
+    template:
+    '<div class="card">'+
+      '<h4 class="card-header"></h4>'+
+      '<div class="card-content" ng-transclude></div>'+
+    '</div>'
+  };
+});
+
+
+
+
+
+
+
+
+
   // var sortData = function($scope.recipes) {
   //     // var matches = data.matches;
   //     // for(var i = 0; i < matches.length; i++) {
@@ -68,7 +92,6 @@ angular.module('recipe-app', [
   //   $scope.allRecipes.splice(0, index);
   //   $scope.allRecipes.splice(index);
   // };
-});
   // $scope.getFood = function(food) {
   //   return $http({
   //     method: 'GET',
