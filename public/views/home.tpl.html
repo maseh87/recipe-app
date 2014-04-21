@@ -19,8 +19,8 @@
   </div>-->
 
   <form ng-submit="search(ingredient)">
-    <input type="text" ng-model="ingredient">
+    <input type="text" ng-model="ingredient" placeholder='Add Ingredients'>
     <input type="submit" value="do shit">
   </form>
-  <card ng-repeat="item in recipes">{{ item.recipeName }}</card>
+  <card ng-repeat="item in recipes">{{ item.recipeName }} </card>
 </div>

@@ -27,7 +27,8 @@ angular.module('recipe-app', [
     Recipes.getFood(food)
     .then(function(data) {
       $scope.recipes = data;
-      console.log('some shit ', $scope.recipes);
+      $scope.pics = $scope.recipes[0].smallImageUrls[0];
+      console.log('some shit ', $scope.recipes[0].smallImageUrls[0]);
     })
   };
 })
@@ -41,7 +42,7 @@ angular.module('recipe-app', [
     replace: true,
     template:
     '<div class="card">'+
-      '<h4 class="card-header"></h4>'+
+      '<h4 class="card-header">{{ title }}</h4>'+
       '<div class="card-content" ng-transclude></div>'+
     '</div>'
   };

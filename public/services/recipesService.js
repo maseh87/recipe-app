@@ -13,7 +13,7 @@ angular.module('recipesService', [
         url: '/' + food
       })
       .success(function(data) {
-        console.log('got food succesfflly ', data);
+        console.log('got food succesfflly ');
         dfd.resolve(data.matches);
       })
       .error(function(err) {
